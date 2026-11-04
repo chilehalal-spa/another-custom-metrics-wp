@@ -2,14 +2,22 @@
 /**
  * Plugin Name: Another Custom Metrics
  * Description: Sistema de gestión de widgets de estadísticas mediante CPT y Shortcodes.
- * Version: 1.2.2
+ * Version: 1.3.0
  * Author: Zumito
  * Text Domain: another-custom-metrics
+ * Requires at least: 5.8
+ * License: GPL-2.0-or-later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Update URI: https://github.com/chilehalal-spa/another-custom-metrics-wp
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+
+// Actualizaciones desde las releases de GitHub
+require_once __DIR__ . '/includes/class-chilehalal-github-updater.php';
+Chilehalal_GitHub_Updater_V1::register( __FILE__, 'chilehalal-spa/another-custom-metrics-wp' );
 
 define( 'ACM_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACM_URL', plugin_dir_url( __FILE__ ) );

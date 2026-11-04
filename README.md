@@ -122,3 +122,30 @@ Crea una fila de 4 columnas donde todas las métricas tengan el texto azul y fon
 * **Clases CSS:**
 * Las tarjetas tienen la clase `.acm-widget-card`.
 * Las disposiciones usan modificadores como `.acm-layout-left`, `.acm-layout-top`, etc.
+
+## Actualizaciones
+
+El plugin se actualiza desde las releases de este repositorio, como cualquier
+plugin de wordpress.org: aparecen en *Escritorio → Actualizaciones* y se pueden
+dejar automáticas en *Plugins → Activar actualizaciones automáticas*.
+
+WordPress revisa cada 12 horas; la respuesta de GitHub se guarda 6 horas.
+
+## Publicar una versión nueva
+
+1. Sube `Version:` en `another-custom-metrics.php` (por ejemplo `1.4.0`).
+2. Haz commit y push.
+3. Crea y sube el tag con el mismo número:
+
+   ```bash
+   git tag v1.4.0
+   git push origin v1.4.0
+   ```
+
+La Action [Release](.github/workflows/release.yml) verifica que el tag coincida
+con la versión, arma `another-custom-metrics.zip` y publica la release. Desde ese
+momento los sitios ven la actualización.
+
+## Licencia
+
+GPL-2.0-or-later. Ver [LICENSE](LICENSE).
