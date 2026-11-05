@@ -46,7 +46,7 @@ class ACM_Ajax {
 
         // Estilos Valor
         $value_style_arr = [];
-        if ( $color ) { $value_style_arr[] = "color: {$color}; border-color: {$color};"; }
+        if ( $color ) { $value_style_arr[] = "color: {$color};"; }
         $value_style_arr[] = "font-size: " . floatval($value_size) . "rem;";
         $value_style = 'style="' . implode( ' ', $value_style_arr ) . '"';
 
