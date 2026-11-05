@@ -42,7 +42,7 @@ class ACM_Init {
 
     public function enqueue_frontend_assets() {
         wp_enqueue_style( 'acm-styles', ACM_URL . 'assets/css/style.css', [], '1.3.1' );
-        wp_enqueue_script( 'acm-core', ACM_URL . 'assets/js/core.js', [], '1.0.7', true );
+        wp_enqueue_script( 'acm-core', ACM_URL . 'assets/js/core.js', [], '1.3.1', true );
         wp_enqueue_script( 'acm-frontend', ACM_URL . 'assets/js/frontend.js', ['acm-core'], '1.0.7', true );
     }
 
@@ -57,7 +57,7 @@ class ACM_Init {
         wp_enqueue_style( 'acm-styles', ACM_URL . 'assets/css/style.css', [], '1.3.1' );
         wp_enqueue_style( 'acm-admin-css', ACM_URL . 'assets/css/admin.css', [], '1.0.1' );
 
-        wp_enqueue_script( 'acm-core', ACM_URL . 'assets/js/core.js', [], '1.0.7', true );
+        wp_enqueue_script( 'acm-core', ACM_URL . 'assets/js/core.js', [], '1.3.1', true );
         wp_enqueue_script( 'acm-admin', ACM_URL . 'assets/js/admin.js', ['acm-core'], '1.0.7', true );
     }
 }

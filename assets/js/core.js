@@ -132,10 +132,26 @@ window.ACM = window.ACM || {};
         element.classList.remove('acm-effect-blur', 'acm-effect-bounce');
         element.style.display = '';
 
+        // Fija el ancho antes de animar: si no, la caja crece con cada cifra
+        // intermedia y empuja el resto de la tarjeta. Se mide el texto más ancho
+        // del recorrido, no solo el final: en formato compacto "+896.4M" es más
+        // ancho que el valor final "+1.9B".
+        const finalText = prefix + formatNumberOnly(rawTarget, format, decimals) + suffix;
+        element.style.minWidth = '';
+        element.style.boxSizing = 'border-box';
+        element.style.justifyContent = 'center';
+        let maxWidth = 0;
+        for (let i = 0; i <= 40; i++) {
+            const text = i === 40 ? finalText : prefix + formatNumberOnly(rawTarget * i / 40, format, decimals) + suffix;
+            element.textContent = text;
+            maxWidth = Math.max(maxWidth, element.getBoundingClientRect().width);
+        }
+        element.textContent = finalText;
+        element.style.minWidth = Math.ceil(maxWidth) + 'px';
+
         // Router de animaciones
         if (animType === 'slot') {
-            const finalStr = prefix + formatNumberOnly(rawTarget, format, decimals) + suffix;
-            animateSlotMachine(element, finalStr, duration);
+            animateSlotMachine(element, finalText, duration);
         } else if (animType === 'blur') {
             animateCssEffect(element, rawTarget, format, decimals, prefix, suffix, 'acm-effect-blur');
         } else if (animType === 'bounce') {
