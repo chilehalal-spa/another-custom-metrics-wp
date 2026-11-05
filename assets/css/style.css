@@ -122,7 +122,18 @@
 }
 
 /* Móvil (< 480px) */
-/* Siempre 1 columna para legibilidad total. */
+/* Se mantienen 2 columnas: con 1 por fila las secciones de 6 y 12 métricas eran muy altas. */
 @media (max-width: 480px) {
-    .acm-group-container { --acm-per-row: 1; }
+    .acm-group-container { --acm-per-row: min(var(--acm-cols, 3), 2); }
+
+    .acm-group-container > .acm-widget-card {
+        padding-top: 14px;
+        padding-bottom: 14px;
+        gap: 10px;
+    }
+
+    /* El tamaño del valor viene en línea desde el admin; en media pantalla se acota para que "+1.9B" quepa */
+    .acm-group-container .acm-value {
+        font-size: clamp(1.25rem, 7vw, 2.2rem) !important;
+    }
 }
