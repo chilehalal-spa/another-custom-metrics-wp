@@ -13,9 +13,13 @@ $layout_cls = ! empty( $layout_class ) ? $layout_class : 'acm-layout-top';
 
 // Aseguramos fallback para label_style si no viene definido (por compatibilidad)
 if ( ! isset( $label_style ) ) $label_style = '';
+
+// Un solo atributo style: el navegador ignora un segundo style="" en la misma etiqueta
+$card_css  = trim( preg_replace( '/^style="(.*)"$/', '$1', (string) $card_style ) . ' ' . $extra_style );
+$style_att = $card_css ? 'style="' . $card_css . '"' : '';
 ?>
 
-<<?php echo $tag; ?> class="acm-widget-card <?php echo $layout_cls; ?> <?php echo $link_class; ?>" <?php echo $href_attr; ?> <?php echo $card_style; ?> style="<?php echo $extra_style; ?>">
+<<?php echo $tag; ?> class="acm-widget-card <?php echo $layout_cls; ?> <?php echo $link_class; ?>" <?php echo $href_attr; ?> <?php echo $style_att; ?>>
     
     <?php if ( ! empty( $image_html ) ) : ?>
         <div class="acm-visual">

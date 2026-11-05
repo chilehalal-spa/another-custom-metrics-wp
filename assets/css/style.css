@@ -10,7 +10,7 @@
     /* --- FLEXBOX SYSTEM --- */
     display: flex;
     align-items: center;     /* Centrado verticalmente entre icono y texto */
-    justify-content: center; /* Centrado horizontal del bloque */
+    justify-content: flex-start; /* Arriba: icono y número quedan a la misma altura en todas las tarjetas aunque una etiqueta ocupe dos líneas */
     gap: 15px;               /* Espacio entre el icono y el texto */
     flex-direction: column;  /* Por defecto: Arriba (Columna) */
     text-align: center;      /* Por defecto: Centrado */
@@ -88,32 +88,36 @@
 .acm-value span { text-align: center; }
 
 /* --- SISTEMA DE REJILLA RESPONSIVE PARA GRUPOS --- */
+/* Flex con wrap en vez de grid: una fila incompleta queda centrada, no pegada a la izquierda. */
 
 .acm-group-container {
-    display: grid;
+    --acm-per-row: var(--acm-cols, 3);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--acm-gap, 20px);
     width: 100%;
-    grid-template-columns: repeat(var(--acm-cols, 3), 1fr);
+}
+
+.acm-group-container > .acm-widget-card {
+    box-sizing: border-box;
+    flex: 0 0 calc((100% - (var(--acm-per-row) - 1) * var(--acm-gap, 20px)) / var(--acm-per-row));
+    max-width: none;
 }
 
 /* Máximo 4 columnas. Si tienes 6, bajan a 4. Si tienes 2, se quedan en 2. */
 @media (max-width: 1100px) {
-    .acm-group-container {
-        grid-template-columns: repeat(min(var(--acm-cols), 4), 1fr);
-    }
+    .acm-group-container { --acm-per-row: min(var(--acm-cols, 3), 4); }
 }
 
 /* Tablet Vertical (< 768px) */
 /* Máximo 2 columnas para que no se aprieten. */
 @media (max-width: 768px) {
-    .acm-group-container {
-        grid-template-columns: repeat(min(var(--acm-cols), 2), 1fr);
-    }
+    .acm-group-container { --acm-per-row: min(var(--acm-cols, 3), 2); }
 }
 
 /* Móvil (< 480px) */
 /* Siempre 1 columna para legibilidad total. */
 @media (max-width: 480px) {
-    .acm-group-container {
-        grid-template-columns: 1fr;
-    }
+    .acm-group-container { --acm-per-row: 1; }
 }

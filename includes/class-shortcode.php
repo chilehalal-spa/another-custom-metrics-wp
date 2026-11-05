@@ -42,7 +42,7 @@ class ACM_Shortcode {
         if ( $cols < 1 ) $cols = 1;
         if ( $cols > 12 ) $cols = 12;
 
-        $grid_style  = "display: grid; gap: " . esc_attr($atts['gap']) . ";";
+        $grid_style  = "--acm-gap: " . esc_attr($atts['gap']) . ";";
         $grid_style .= "--acm-cols: " . $cols . ";";
         
         $output = '';
